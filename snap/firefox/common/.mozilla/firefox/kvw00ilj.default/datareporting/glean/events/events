@@ -1,0 +1,16 @@
+{"timestamp":3500324,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"loadfail_reason":"N/A","glean_timestamp":"1734546553218","path_key":"clean","can_load":"true"}}
+{"timestamp":3500325,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"can_load":"true","path_key":"clean","loadfail_reason":"N/A","glean_timestamp":"1734546553219"}}
+{"timestamp":3500326,"category":"session_restore","name":"shutdown_success_session_startup","extra":{"shutdown_ok":"false","glean_timestamp":"1734546553220","shutdown_reason":"N/A"}}
+{"timestamp":3501513,"category":"webcompatreporting","name":"reason_dropdown","extra":{"setting":"required","glean_timestamp":"1734546554407"}}
+{"timestamp":3504693,"category":"doh","name":"state_rollback","extra":{"glean_timestamp":"1734546557587","value":"null"}}
+{"timestamp":3505109,"category":"jsonfile","name":"load_logins","extra":{"value":"","glean_timestamp":"1734546558003"}}
+{"timestamp":3505749,"category":"urlbar","name":"engagement","extra":{"interaction":"typed","results":"tip_onboard","engagement_type":"click","provider":"UrlbarProviderSearchTips","sap":"urlbar_newtab","selected_result":"tip_onboard","search_engine_default_id":"google-ubuntu-sn","n_words":"0","groups":"heuristic","search_mode":"","actions":"none","n_chars":"0","selected_position":"1","n_results":"1","glean_timestamp":"1734546558642"}}
+{"timestamp":3506083,"category":"nimbus_events","name":"unenrollment","extra":{"branch":"treatment-b","experiment":"new-alt-text-flow-and-generation-treatment-b-rollout","reason":"bucketing","glean_timestamp":"1734546558977"}}
+{"timestamp":3506173,"category":"upgrade_dialog","name":"trigger_reason","extra":{"glean_timestamp":"1734546559067","value":"not-major"}}
+{"timestamp":3506541,"category":"nimbus_events","name":"enroll_failed","extra":{"glean_timestamp":"1734546559434","experiment":"disabling-chips-for-v131-only","reason":"feature-conflict"}}
+{"timestamp":3506620,"category":"nimbus_events","name":"unenrollment","extra":{"reason":"recipe-not-seen","branch":"control","experiment":"disabling-chips-for-v131","glean_timestamp":"1734546559514"}}
+{"timestamp":3506622,"category":"nimbus_events","name":"validation_failed","extra":{"reason":"invalid-feature","experiment":"add-an-image-to-pdf-with-alt-text-rollout","feature":"addAnImageInPDF","glean_timestamp":"1734546559516"}}
+{"timestamp":3506623,"category":"nimbus_events","name":"validation_failed","extra":{"glean_timestamp":"1734546559516","experiment":"tab-hover-preview-release-rollout","reason":"invalid-feature","feature":"tabPreview"}}
+{"timestamp":3506627,"category":"nimbus_events","name":"is_ready","extra":{"glean_timestamp":"1734546559521"}}
+{"timestamp":3511678,"category":"urlbar","name":"engagement","extra":{"search_engine_default_id":"google-ubuntu-sn","provider":"HeuristicFallback","sap":"urlbar_newtab","results":"url","actions":"none","glean_timestamp":"1734546564571","selected_position":"1","n_chars":"22","search_mode":"","engagement_type":"enter","selected_result":"url","interaction":"pasted","groups":"heuristic","n_words":"1","n_results":"1"}}
+{"timestamp":3579921,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1734546632814"}}

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <title>redis.exceptions.ConnectionError: Error -2 connecting to redis-server:6379. Name or service not known.
+ // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css">
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script>
+      var CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "rmatCqzgwMYGAGopr78m";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>ConnectionError</h1>
+<div class="detail">
+  <p class="errormsg">redis.exceptions.ConnectionError: Error -2 connecting to redis-server:6379. Name or service not known.
+</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  <h3></h3>
+  <ul><li><div class="frame" id="frame-138678104422992">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/connection.py"</cite>,
+      line <em class="line">559</em>,
+      in <code class="function">connect</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>def connect(self):</pre>
+<pre class="line before"><span class="ws">        </span>&#34;Connects to the Redis server if not already connected&#34;</pre>
+<pre class="line before"><span class="ws">        </span>if self._sock:</pre>
+<pre class="line before"><span class="ws">            </span>return</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>sock = self._connect()</pre>
+<pre class="line after"><span class="ws">        </span>except socket.timeout:</pre>
+<pre class="line after"><span class="ws">            </span>raise TimeoutError(&#34;Timeout connecting to server&#34;)</pre>
+<pre class="line after"><span class="ws">        </span>except socket.error as e:</pre>
+<pre class="line after"><span class="ws">            </span>raise ConnectionError(self._error_message(e))</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104423104">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/connection.py"</cite>,
+      line <em class="line">584</em>,
+      in <code class="function">_connect</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>&#34;Create a TCP socket connection&#34;</pre>
+<pre class="line before"><span class="ws">        </span># we want to mimic what socket.create_connection does to support</pre>
+<pre class="line before"><span class="ws">        </span># ipv4/ipv6, but we want to set options prior to calling</pre>
+<pre class="line before"><span class="ws">        </span># socket.connect()</pre>
+<pre class="line before"><span class="ws">        </span>err = None</pre>
+<pre class="line current"><span class="ws">        </span>for res in socket.getaddrinfo(self.host, self.port, self.socket_type,</pre>
+<pre class="line after"><span class="ws">                                      </span>socket.SOCK_STREAM):</pre>
+<pre class="line after"><span class="ws">            </span>family, socktype, proto, canonname, socket_address = res</pre>
+<pre class="line after"><span class="ws">            </span>sock = None</pre>
+<pre class="line after"><span class="ws">            </span>try:</pre>
+<pre class="line after"><span class="ws">                </span>sock = socket.socket(family, socktype, proto)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104423216">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/socket.py"</cite>,
+      line <em class="line">966</em>,
+      in <code class="function">getaddrinfo</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>these arguments selects the full range of results.</pre>
+<pre class="line before"><span class="ws">    </span>&#34;&#34;&#34;</pre>
+<pre class="line before"><span class="ws">    </span># We override this function since we want to translate the numeric family</pre>
+<pre class="line before"><span class="ws">    </span># and socket type values to enum constants.</pre>
+<pre class="line before"><span class="ws">    </span>addrlist = []</pre>
+<pre class="line current"><span class="ws">    </span>for res in _socket.getaddrinfo(host, port, family, type, proto, flags):</pre>
+<pre class="line after"><span class="ws">        </span>af, socktype, proto, canonname, sa = res</pre>
+<pre class="line after"><span class="ws">        </span>addrlist.append((_intenum_converter(af, AddressFamily),</pre>
+<pre class="line after"><span class="ws">                         </span>_intenum_converter(socktype, SocketKind),</pre>
+<pre class="line after"><span class="ws">                         </span>proto, canonname, sa))</pre>
+<pre class="line after"><span class="ws">    </span>return addrlist</pre></div>
+</div>
+
+<li><div class="exc-divider">During handling of the above exception, another exception occurred:</div>
+<li><div class="frame" id="frame-138678104421536">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/flask/app.py"</cite>,
+      line <em class="line">1536</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>) -&gt; cabc.Iterable[bytes]:</pre>
+<pre class="line before"><span class="ws">        </span>&#34;&#34;&#34;The WSGI server calls the Flask application object as the</pre>
+<pre class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app`, which can be</pre>
+<pre class="line before"><span class="ws">        </span>wrapped to apply middleware.</pre>
+<pre class="line before"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104421424">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/flask/app.py"</cite>,
+      line <em class="line">1514</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104421760">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/flask/app.py"</cite>,
+      line <em class="line">1511</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>error: BaseException | None = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104421872">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/flask/app.py"</cite>,
+      line <em class="line">919</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>request_started.send(self, _async_wrapper=self.ensure_sync)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(</pre>
+<pre class="line after"><span class="ws">        </span>self,</pre>
+<pre class="line after"><span class="ws">        </span>rv: ft.ResponseReturnValue | HTTPException,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104421984">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/flask/app.py"</cite>,
+      line <em class="line">917</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self, _async_wrapper=self.ensure_sync)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422096">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/flask/app.py"</cite>,
+      line <em class="line">902</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>and req.method == &#34;OPTIONS&#34;</pre>
+<pre class="line before"><span class="ws">        </span>):</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line before"><span class="ws">        </span>view_args: dict[str, t.Any] = req.view_args  # type: ignore[assignment]</pre>
+<pre class="line current"><span class="ws">        </span>return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self) -&gt; Response:</pre>
+<pre class="line after"><span class="ws">        </span>&#34;&#34;&#34;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422208">
+  <h4>File <cite class="filename">"/app/main.py"</cite>,
+      line <em class="line">19</em>,
+      in <code class="function">index</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span>page_counter_key = &#39;page_counter&#39;</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>@app.route(&#39;/&#39;)</pre>
+<pre class="line before"><span class="ws"></span>def index():</pre>
+<pre class="line before"><span class="ws">    </span># Increment the page counter in Redis</pre>
+<pre class="line current"><span class="ws">    </span>page_count = redis_conn.incr(page_counter_key)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>return render_template(&#39;index.html&#39;, page_count=page_count)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>if __name__ == &#39;__main__&#39;:</pre>
+<pre class="line after"><span class="ws">    </span>app.run(debug=True,host=&#34;0.0.0.0&#34;)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422320">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/client.py"</cite>,
+      line <em class="line">1641</em>,
+      in <code class="function">incr</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>def incr(self, name, amount=1):</pre>
+<pre class="line before"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line before"><span class="ws">        </span>Increments the value of ``key`` by ``amount``.  If no key exists,</pre>
+<pre class="line before"><span class="ws">        </span>the value will be initialized as ``amount``</pre>
+<pre class="line before"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line current"><span class="ws">        </span>return self.incrby(name, amount)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def incrby(self, name, amount=1):</pre>
+<pre class="line after"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line after"><span class="ws">        </span>Increments the value of ``key`` by ``amount``.  If no key exists,</pre>
+<pre class="line after"><span class="ws">        </span>the value will be initialized as ``amount``</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422432">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/client.py"</cite>,
+      line <em class="line">1650</em>,
+      in <code class="function">incrby</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>Increments the value of ``key`` by ``amount``.  If no key exists,</pre>
+<pre class="line before"><span class="ws">        </span>the value will be initialized as ``amount``</pre>
+<pre class="line before"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line before"><span class="ws">        </span># An alias for ``incr()``, because it is already implemented</pre>
+<pre class="line before"><span class="ws">        </span># as INCRBY redis command.</pre>
+<pre class="line current"><span class="ws">        </span>return self.execute_command(&#39;INCRBY&#39;, name, amount)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def incrbyfloat(self, name, amount=1.0):</pre>
+<pre class="line after"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line after"><span class="ws">        </span>Increments the value at key ``name`` by floating ``amount``.</pre>
+<pre class="line after"><span class="ws">        </span>If no key exists, the value will be initialized as ``amount``</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422656">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/client.py"</cite>,
+      line <em class="line">898</em>,
+      in <code class="function">execute_command</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span># COMMAND EXECUTION AND PROTOCOL PARSING</pre>
+<pre class="line before"><span class="ws">    </span>def execute_command(self, *args, **options):</pre>
+<pre class="line before"><span class="ws">        </span>&#34;Execute a command and return a parsed response&#34;</pre>
+<pre class="line before"><span class="ws">        </span>pool = self.connection_pool</pre>
+<pre class="line before"><span class="ws">        </span>command_name = args[0]</pre>
+<pre class="line current"><span class="ws">        </span>conn = self.connection or pool.get_connection(command_name, **options)</pre>
+<pre class="line after"><span class="ws">        </span>try:</pre>
+<pre class="line after"><span class="ws">            </span>conn.send_command(*args)</pre>
+<pre class="line after"><span class="ws">            </span>return self.parse_response(conn, command_name, **options)</pre>
+<pre class="line after"><span class="ws">        </span>except (ConnectionError, TimeoutError) as e:</pre>
+<pre class="line after"><span class="ws">            </span>conn.disconnect()</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422768">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/connection.py"</cite>,
+      line <em class="line">1192</em>,
+      in <code class="function">get_connection</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                </span>connection = self.make_connection()</pre>
+<pre class="line before"><span class="ws">            </span>self._in_use_connections.add(connection)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span># ensure this connection is connected to Redis</pre>
+<pre class="line current"><span class="ws">            </span>connection.connect()</pre>
+<pre class="line after"><span class="ws">            </span># connections that the pool provides should be ready to send</pre>
+<pre class="line after"><span class="ws">            </span># a command. if not, the connection was either returned to the</pre>
+<pre class="line after"><span class="ws">            </span># pool before all data has been read or the socket has been</pre>
+<pre class="line after"><span class="ws">            </span># closed. either way, reconnect and verify everything is good.</pre>
+<pre class="line after"><span class="ws">            </span>try:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-138678104422880">
+  <h4>File <cite class="filename">"/usr/local/lib/python3.9/site-packages/redis/connection.py"</cite>,
+      line <em class="line">563</em>,
+      in <code class="function">connect</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>sock = self._connect()</pre>
+<pre class="line before"><span class="ws">        </span>except socket.timeout:</pre>
+<pre class="line before"><span class="ws">            </span>raise TimeoutError(&#34;Timeout connecting to server&#34;)</pre>
+<pre class="line before"><span class="ws">        </span>except socket.error as e:</pre>
+<pre class="line current"><span class="ws">            </span>raise ConnectionError(self._error_message(e))</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self._sock = sock</pre>
+<pre class="line after"><span class="ws">        </span>try:</pre>
+<pre class="line after"><span class="ws">            </span>self.on_connect()</pre>
+<pre class="line after"><span class="ws">        </span>except RedisError:</pre></div>
+</div>
+</ul>
+  <blockquote>redis.exceptions.ConnectionError: Error -2 connecting to redis-server:6379. Name or service not known.
+</blockquote>
+</div>
+
+<div class="plain">
+    <p>
+      This is the Copy/Paste friendly version of the traceback.
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/connection.py&#34;, line 559, in connect
+    sock = self._connect()
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/connection.py&#34;, line 584, in _connect
+    for res in socket.getaddrinfo(self.host, self.port, self.socket_type,
+  File &#34;/usr/local/lib/python3.9/socket.py&#34;, line 966, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &#34;/usr/local/lib/python3.9/site-packages/flask/app.py&#34;, line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File &#34;/usr/local/lib/python3.9/site-packages/flask/app.py&#34;, line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File &#34;/usr/local/lib/python3.9/site-packages/flask/app.py&#34;, line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File &#34;/usr/local/lib/python3.9/site-packages/flask/app.py&#34;, line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File &#34;/usr/local/lib/python3.9/site-packages/flask/app.py&#34;, line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File &#34;/usr/local/lib/python3.9/site-packages/flask/app.py&#34;, line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File &#34;/app/main.py&#34;, line 19, in index
+    page_count = redis_conn.incr(page_counter_key)
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/client.py&#34;, line 1641, in incr
+    return self.incrby(name, amount)
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/client.py&#34;, line 1650, in incrby
+    return self.execute_command(&#39;INCRBY&#39;, name, amount)
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/client.py&#34;, line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/connection.py&#34;, line 1192, in get_connection
+    connection.connect()
+  File &#34;/usr/local/lib/python3.9/site-packages/redis/connection.py&#34;, line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error -2 connecting to redis-server:6379. Name or service not known.
+</textarea>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 559, in connect
+    sock = self._connect()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 584, in _connect
+    for res in socket.getaddrinfo(self.host, self.port, self.socket_type,
+  File "/usr/local/lib/python3.9/socket.py", line 966, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/app/main.py", line 19, in index
+    page_count = redis_conn.incr(page_counter_key)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 1641, in incr
+    return self.incrby(name, amount)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 1650, in incrby
+    return self.execute_command('INCRBY', name, amount)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 1192, in get_connection
+    connection.connect()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error -2 connecting to redis-server:6379. Name or service not known.
+
+
+-->
+Ëeô$ç           gcÜG©î˝       D    O^partitionKey=%28http%2Clocalhost%2C5000%29,:http://localhost:5000/ strongly-framed 1 request-method GET response-head HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: Werkzeug/3.1.3 Python/3.9.21
+Date: Wed, 18 Dec 2024 18:29:25 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 26874
+ original-response-headers Server: Werkzeug/3.1.3 Python/3.9.21
+Date: Wed, 18 Dec 2024 18:29:25 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 26874
+Connection: close
+ ctid 1 uncompressed-len 0 net-response-time-onstart 829 net-response-time-onstop 1424   h˙
